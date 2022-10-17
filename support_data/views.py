@@ -16,3 +16,6 @@ def upload(request):
         my_image.save()
         return redirect('/home')
 
+def result(request):
+    # my_apply = Support.objects.get(id=id)
+    return render(request, 'support_data/result.html')
