@@ -50,5 +50,7 @@ def login(request):
         else:
             return render(request,'user/login.html',{'error':'유저이름 혹은 패스워드를 확인 해 주세요'})
     
-
+def logout(request):
+    auth.logout(request)
+    return redirect('/login/')
     
