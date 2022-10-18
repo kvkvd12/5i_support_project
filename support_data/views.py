@@ -6,7 +6,9 @@ from django.shortcuts import redirect, render
 # Create your views here.
 def home(request):
     if request.method == 'GET':
-        return render(request, 'support_data/home.html')
+        my_images = Support.objects.all()
+        return render(request, 'support_data/home.html', {'my_images':my_images})
+     
 
 def upload(request):
     if request.method == 'GET':
