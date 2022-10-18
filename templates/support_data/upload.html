@@ -36,12 +36,15 @@
     <!-- Product section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                <form method="post" action="/upload/" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
-                        <input id="image" type="file" name="image" multiple></div>
+            <form method="post" action="/upload/" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row gx-4 gx-lg-5 align-items-center">
 
+                    <div class="col-md-6">
+                        <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg"
+                            alt="..." id="img"/>
+                        <input id="image" type="file" style="display: block;" name="image" multiple>
+                    </div>
                     <div class="col-md-6">
                         <h1 class="display-5 fw-bolder">00팀 회식비 신청</h1>
                         <div class="fs-5 mb-5">
@@ -55,13 +58,13 @@
 
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1"
                                 style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="sub">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 Upload
                             </button>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </section>
     <!-- Footer-->
@@ -70,9 +73,48 @@
             <p class="m-0 text-center text-white">회식비 신청 사이트 2022</p>
         </div>
     </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("image").onchange = function () {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                // get loaded data and render thumbnail.
+                document.getElementById("img").src = e.target.result;
+
+                var canvas = document.createElement("canvas");      
+                var ctx = canvas.getContext("2d")
+                ctx.drawImage(img, 0, 0);
+                var MAX_WIDTH = 600;
+                var MAX_HEIGHT = 500;
+                var width = img.width;
+                var height = img.height;
+
+                if (width > height) {
+                    if (width > MAX_WIDTH) {
+                        height *= MAX_WIDTH / width;
+                        width = MAX_WIDTH;
+                    }
+                } else {
+                    if (height > MAX_HEIGHT) {
+                        width *= MAX_HEIGHT / height;
+                        height = MAX_HEIGHT;
+                    }
+                }
+                canvas.width = width;
+                canvas.height = height;
+
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+
+                var dataurl = canvas.toDataURL("image/png");
+                document.getElementById('output').src = dataurl;
+
+            };
+
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+        };
+    </script>
 </body>
 
 </html>
