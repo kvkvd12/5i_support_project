@@ -27,7 +27,7 @@ def upload(request):
         if int(input_num) == my_image.people_num:
             return redirect(f'/result/{my_image.id}/')
         else:
-            # my_image.delete()
+            my_image.delete()
             return render(request, 'support_data/upload.html',{'error':'인원 수가 일치하지 않습니다'})
 
 
