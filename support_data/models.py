@@ -11,3 +11,4 @@ class Support(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to = "images/")
     people_num = models.CharField(max_length=128)
+    input_num = models.CharField(max_length=128)
