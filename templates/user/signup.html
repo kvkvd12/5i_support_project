@@ -213,13 +213,19 @@
                     <input type="text" placeholder="ID" name="username">
                     <input type="password" placeholder="Password" name="password">
                     <input type="password" placeholder="Password Check" name="password2">
+                    {% if error %}
+                    <div style="color:red;" role="alert">
+                        {{ error }}
+                    </div>
+                    {% endif %}
                     <button class="form_btn">Sign Up</button>
                 </form>
             </div>
             <div class="overlay-container">
                 <div class="overlay-right">
-                    <h1>Welcome Back</h1>
-                    <p>To keep connected with us please login with your personal info</p>
+                    <h1>Welcome</h1>
+                    <p>5i에서 회식비를 지원받고 싶은 당신!! 얼른 가입하세요^_^</p>
+                    <p>이미 가입했다면 로그인하러 가십쇼!!</p>
                     <button id="signIn" class="overlay_btn"><a href="/login" style="text-decoration: none; color: inherit;">login</a></button>
                 </div>
             </div>
