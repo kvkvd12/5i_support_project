@@ -1,6 +1,8 @@
 from support_data.machine import transform_image
 from .models  import Support
 from django.shortcuts import redirect, render
+from user.models import User
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -34,3 +36,31 @@ def result(request, id):
         # 업로드 페이지에서 저장한 내용들을 모두 받아와준다.
         my_image = Support.objects.get(id=id)
         return render(request, 'support_data/result.html', {'my_image':my_image})
+    
+@login_required    
+def approval_list(request):
+    if request.method == 'GET':
+        approval_list = Support.objects.all()
+        return render(request, 'support_data/approval.html', {'approval_list': approval_list})
+
+@login_required        
+def approval(request, id):
+    approval = Support.objects.get(id=id)
+    approval.is_approval.save()
+    approval.save()
+    
+    approval=True
+    
+    return redirect('/approval')
+    
+
+# @login_required        
+# def approval(request, id):
+#     me = request.user
+#     approval=approval
+#     click = Support.objects.get(id=id)
+#     if me in click.approval.all():
+#         approval=True
+#     else:
+#         click.approval.add(request.user)
+#     return redirect('/approval')

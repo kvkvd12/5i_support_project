@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'support',
     'user',
     'support_data',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
