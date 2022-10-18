@@ -14,8 +14,10 @@ def upload(request):
         team_name = request.user
         my_image = Support.objects.create(image=image, team_name=team_name)
         my_image.save()
-        return redirect('/home')
+        return redirect(f'/result/{my_image.id}/')
 
-def result(request):
-    # my_apply = Support.objects.get(id=id)
-    return render(request, 'support_data/result.html')
+def result(request, id):
+    if request.method == 'GET':
+        # 업로드 페이지에서 저장한 내용들을 모두 받아와준다.
+        my_image = Support.objects.get(id=id)
+        return render(request, 'support_data/result.html', {'my_image':my_image})
