@@ -42,7 +42,7 @@
 
                     <div class="col-md-6">
                         <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg"
-                            alt="..." id="img"/>
+                            alt="..." id="img" />
                         <input id="image" type="file" style="display: block;" name="image" multiple>
                     </div>
                     <div class="col-md-6">
@@ -56,11 +56,16 @@
                         <div class="d-flex">
                             <span>인원수 입력하기 </span>
 
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1"
-                                style="max-width: 3rem" />
+                            <input class="form-control text-center me-3" name="input_num" id="inputQuantity" type="num"
+                                value="1" style="max-width: 3rem" />
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 Upload
                             </button>
+                            {% if error %}
+                            <div style="color:red;" role="alert">
+                                {{ error }}
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -81,7 +86,7 @@
                 // get loaded data and render thumbnail.
                 document.getElementById("img").src = e.target.result;
 
-                var canvas = document.createElement("canvas");      
+                var canvas = document.createElement("canvas");
                 var ctx = canvas.getContext("2d")
                 ctx.drawImage(img, 0, 0);
                 var MAX_WIDTH = 600;

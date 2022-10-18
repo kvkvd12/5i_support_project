@@ -1,10 +1,14 @@
+from support_data.machine import transform_image
 from .models  import Support
 from django.shortcuts import redirect, render
+
 
 # Create your views here.
 def home(request):
     if request.method == 'GET':
-        return render(request, 'support_data/home.html')
+        my_images = Support.objects.all()
+        return render(request, 'support_data/home.html', {'my_images':my_images})
+     
 
 def upload(request):
     if request.method == 'GET':
@@ -12,9 +16,18 @@ def upload(request):
     if request.method == 'POST':
         image = request.FILES.get('image','')
         team_name = request.user
-        my_image = Support.objects.create(image=image, team_name=team_name)
+        input_num = request.POST.get('input_num','')
+        my_image = Support.objects.create(image=image, team_name=team_name,input_num=input_num)
         my_image.save()
-        return redirect(f'/result/{my_image.id}/')
+        # 머신러닝 코드 불러오기
+        my_image.people_num = transform_image(my_image.image.url)
+        my_image.save()
+        if int(input_num) == my_image.people_num:
+            return redirect(f'/result/{my_image.id}/')
+        else:
+            my_image.delete()
+            return render(request, 'support_data/upload.html',{'error':'인원 수가 일치하지 않습니다'})
+
 
 def result(request, id):
     if request.method == 'GET':
