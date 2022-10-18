@@ -33,18 +33,19 @@
             </div>
         </nav>
         <!-- Product section-->
+        {% for my_image in my_images %}
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg" alt="..." /></div>
-                    
-                    <div class="col-md-6">
-                        <h1 class="display-5 fw-bolder">00팀 회식비</h1>
+                <div class="row gx-4 gx-lg-5 align-items-center">                    
+                    <figure class="col-md-6"><img class="img-fluid rounded" src="{{ my_image.image.url}}" alt="..." id="img2" /></figure>                    
+                    <div class="col-md-5">
+                        <h1 class="display-5 fw-bolder">{{ my_image.team_name }}팀 회식비</h1>
                         <p class="lead">회식비 30만원</p>
                     </div>
                 </div>
             </div>
         </section>
+       {% endfor %}
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">회식비 신청 사이트 2022</p></div>
