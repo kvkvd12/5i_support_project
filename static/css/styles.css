@@ -294,11 +294,16 @@ kbd kbd {
 
 figure {
   margin: 0 0 1rem;
+
 }
 
 img,
 svg {
   vertical-align: middle;
+  width: 70%;
+  margin: auto;
+  display: block;
+  margin-right: -30px;
 }
 
 table {
