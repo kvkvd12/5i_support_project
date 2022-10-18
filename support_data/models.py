@@ -12,3 +12,4 @@ class Support(models.Model):
     image = models.ImageField(upload_to = "images/")
     people_num = models.CharField(max_length=128)
     input_num = models.CharField(max_length=128)
+    is_approval = models.BooleanField(default=False)

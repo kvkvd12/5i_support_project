@@ -1,3 +1,5 @@
+{% load mathfilters %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,9 +24,15 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/home">Home</a></li>
                     </ul>
                     <form class="d-flex">
+                        {% if user.username == 'a' %}
+                        <button class="btn btn-outline-dark" type="submit" >
+                            <a href="/approval" style="text-decoration: none; color: inherit;">승인</a>
+                        </button>
+                        {% else %}
                         <button class="btn btn-outline-dark" type="submit" >
                             <a href="/upload" style="text-decoration: none; color: inherit;">신청하기</a>
                         </button>
+                        {% endif %}
                         <button class="btn btn-outline-dark" type="submit" >
                             <a href="/logout" style="text-decoration: none; color: inherit;">logout</a>
                         </button>
@@ -39,8 +47,8 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">                    
                     <figure class="col-md-6"><img class="img-fluid rounded" src="{{ my_image.image.url}}" alt="..." id="img2" /></figure>                    
                     <div class="col-md-5">
-                        <h1 class="display-5 fw-bolder">{{ my_image.team_name }}팀 회식비</h1>
-                        <p class="lead">회식비 30만원</p>
+                        <h1 class="display-5 fw-bolder">{{ my_image.team_name.team_name }}팀 회식비</h1>
+                        <p class="lead">{{ my_image.people_num|mul:5 }}만원</p>
                     </div>
                 </div>
             </div>
