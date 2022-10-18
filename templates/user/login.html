@@ -201,9 +201,11 @@
   .social-links div:active {
     box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
   }
+
   .overlay-right {
     background-color: gray
   }
+
   .overlay_btn {
     background-color: gray
   }
@@ -219,14 +221,21 @@
           <span>or use your account</span>
           <input type="text" placeholder="ID" name="username">
           <input type="password" placeholder="Password" name="password">
+          {% if error %}
+          <div style="color:red;" role="alert">
+            {{ error }}
+          </div>
+          {% endif %}
           <button class="form_btn">Sign In</button>
         </form>
       </div>
       <div class="overlay-container">
         <div class="overlay-right">
-          <h1>Hello, Friend</h1>
-          <p>Enter your personal details and start journey with us</p>
-          <button id="signUp" class="overlay_btn"><a href="/signup" style="text-decoration: none; color: inherit;">Sign Up</a></button>
+          <h1>Hello~~</h1>
+          <p>얼른 회원가입해서 회식비 신청해유~</p>
+          <p>아이디 없으면 회원가입해유~</p>
+          <button id="signUp" class="overlay_btn"><a href="/signup" style="text-decoration: none; color: inherit;">Sign
+              Up</a></button>
         </div>
       </div>
     </div>
