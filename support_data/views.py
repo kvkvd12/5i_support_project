@@ -1,14 +1,13 @@
 from support_data.machine import transform_image
 from .models  import Support
 from django.shortcuts import redirect, render
-from user.models import User
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator
 
 # Create your views here.
 def home(request):
     if request.method == 'GET':
-        my_images = Support.objects.all()
+        my_images = Support.objects.all().order_by('-id')
         return render(request, 'support_data/home.html', {'my_images':my_images})
      
 
