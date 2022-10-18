@@ -1,69 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
 {% load mathfilters %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Upload</title>
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/static/css/styles.css" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="/home">회식비 신청 사이트</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/home">Home</a></li>
-                    </ul>
-                    <form class="d-flex">
-                        {% if user.username == 'a' %}
-                        <button class="btn btn-outline-dark" type="submit" >
-                            <a href="/approval" style="text-decoration: none; color: inherit;">승인</a>
-                        </button>
-                        {% else %}
-                        <button class="btn btn-outline-dark" type="submit" >
-                            <a href="/upload" style="text-decoration: none; color: inherit;">신청하기</a>
-                        </button>
-                        {% endif %}
-                        <button class="btn btn-outline-dark" type="submit" >
-                            <a href="/logout" style="text-decoration: none; color: inherit;">logout</a>
-                        </button>
-                    </form>
-                </div>
+<!-- Product section-->
+{% for my_image in my_images %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <figure class="col-md-6"><img class="img-fluid rounded" src="{{ my_image.image.url}}" alt="..." id="img2" />
+            </figure>
+            <div class="col-md-5">
+                <h1 class="display-5 fw-bolder">{{ my_image.team_name.team_name }}팀 회식비</h1>
+                <p class="lead">{{ my_image.people_num|mul:5 }}만원</p>
             </div>
-        </nav>
-        <!-- Product section-->
-        {% for my_image in my_images %}
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">                    
-                    <figure class="col-md-6"><img class="img-fluid rounded" src="{{ my_image.image.url}}" alt="..." id="img2" /></figure>                    
-                    <div class="col-md-5">
-                        <h1 class="display-5 fw-bolder">{{ my_image.team_name.team_name }}팀 회식비</h1>
-                        <p class="lead">{{ my_image.people_num|mul:5 }}만원</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-       {% endfor %}
-        <!-- Footer-->
-        <div id='wrapper' "height: auto; min-height: 100%;">
-            <footer class="py-5 bg-dark" style="position : relative; transform : translateY(85%);">
-                <div class="container" style="height: 0px; margin-top:-11px;">
-                    <p class="m-0 text-center text-white">회식비 신청 사이트 2022</p></div>
-            </footer>
         </div>
-    
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        
-    </body>
-</html>
+    </div>
+</section>
+{% endfor %}
+
+{% endblock %}
