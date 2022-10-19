@@ -14,3 +14,4 @@ class Support(models.Model):
     input_num = models.CharField(max_length=128)
     is_approval = models.BooleanField(default=False)
     write_image = models.ImageField(upload_to = "write_images/")
+    content = models.CharField(max_length=256)

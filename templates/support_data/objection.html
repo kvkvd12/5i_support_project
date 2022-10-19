@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}back{% endblock %}
+{% block content %}
+ <!-- Product section-->
+ <section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <form method="post" action="/objection/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row gx-4 gx-lg-5 align-items-center">
+
+                <div class="col-md-6">
+                    <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg"
+                        alt="..." id="img" />
+                    
+                </div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder">{{ user.team_name }} 회식비 신청</h1>
+                    <div class="fs-5 mb-5">
+                        <span></span>
+                    </div>
+                    <p class="lead" style="margin-bottom:40px;"></p>
+                    <textarea name="content" id="content" cols="50" rows="10"></textarea>
+                    <input id="image" type="file" style="display: block; margin-left:1px; margin-bottom:40px;"  name="image" multiple>
+                    <div class="d-flex" style="align-items : center;">
+                        <span>인원수 입력하기 </span>
+
+                        <input class="form-control text-center me-3" name="input_num" id="inputQuantity" type="num"
+                            value="1" style="max-width: 3rem; margin-left:10px;"  />
+                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                            Upload
+                        </button>
+                        {% if error %}
+                        <div style="color:red;" role="alert">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script>
+    document.getElementById("image").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("img").src = e.target.result;
+
+            var canvas = document.createElement("canvas");
+            var ctx = canvas.getContext("2d")
+            ctx.drawImage(img, 0, 0);
+            var MAX_WIDTH = 600;
+            var MAX_HEIGHT = 500;
+            var width = img.width;
+            var height = img.height;
+
+            if (width > height) {
+                if (width > MAX_WIDTH) {
+                    height *= MAX_WIDTH / width;
+                    width = MAX_WIDTH;
+                }
+            } else {
+                if (height > MAX_HEIGHT) {
+                    width *= MAX_HEIGHT / height;
+                    height = MAX_HEIGHT;
+                }
+            }
+            canvas.width = width;
+            canvas.height = height;
+
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+            var dataurl = canvas.toDataURL("image/png");
+            document.getElementById('output').src = dataurl;
+
+        };
+
+        // read the image file as a data URL.
+        reader.readAsDataURL(this.files[0]);
+    };
+</script>
+{% endblock %}

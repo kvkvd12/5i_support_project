@@ -1,3 +1,4 @@
+import support_data
 from support_data.machine import transform_image
 from support_data.machine import rectangle_image
 from .models  import Support
@@ -84,5 +85,17 @@ def approval(request, id):
     click_approval.is_approval=not click_approval.is_approval
     click_approval.save()
     return redirect('/approval')
+
+
+
+def objection(request):
+    if request.method == 'GET':
+        return render (request, 'support_data/objection.html')
+    elif request.method == 'POST':
+        team_name = request.user
+        content = request.POST.get("content")
+        #image = request.FILES.get("image")
+        Support.objects.create(content=content, team_name=team_name)
+        return redirect('/')    
 
 
