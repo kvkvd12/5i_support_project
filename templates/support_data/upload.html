@@ -10,22 +10,22 @@
 
                     <div class="col-md-6">
                         <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg"
-                            alt="..." id="img">
-                        <input id="image" type="file" style="display: block; margin-left:30px;"  name="image" multiple>
+                            alt="..." id="img" />
+                        
                     </div>
                     <div class="col-md-6">
                         <h1 class="display-5 fw-bolder">{{ user.team_name }} 회식비 신청</h1>
                         <div class="fs-5 mb-5">
                             <span></span>
                         </div>
-                        <p class="lead">5i에서 회식비를 지원해드립니다! 회식비는 인당 5만원씩 지원해드립니다. 참가했다는걸 인증하기 위해 사진을 올려주세요! 사진에서 사람을 인식해
+                        <p class="lead" style="margin-bottom:40px;">5i에서 회식비를 지원해드립니다! 회식비는 인당 5만원씩 지원해드립니다. 참가했다는걸 인증하기 위해 사진을 올려주세요! 사진에서 사람을 인식해
                             입력한 인원수와 맞는지 확인하여 일치할 경우 회식비를 지원해드립니다</p>
-                        <div> "" </div>
-                        <div class="d-flex">
+                        <input id="image" type="file" style="display: block; margin-left:1px; margin-bottom:40px;"  name="image" multiple>
+                        <div class="d-flex" style="align-items : center;">
                             <span>인원수 입력하기 </span>
 
                             <input class="form-control text-center me-3" name="input_num" id="inputQuantity" type="num"
-                                value="1" style="max-width: 3rem" />
+                                value="1" style="max-width: 3rem; margin-left:10px;"  />
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 Upload
                             </button>
