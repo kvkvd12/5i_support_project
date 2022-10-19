@@ -2,18 +2,97 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 {% load mathfilters %}
+<style>
+   .shop_section .box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+  }
+  
+  .shop_section .box .detail-box h2 {
+    font-weight: bold;
+    font-size: 3rem;
+  }
+  
+  .shop_section .box .detail-box p {
+    margin-bottom: 0;
+  }
+  
+  .shop_section .box .img-box img {
+    max-width: 100%;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  
+  .shop_section .box .btn-box {
+    margin-top: 25px;
+  }
+  
+  .shop_section .box .btn-box a {
+    display: inline-block;
+    padding: 8px 40px;
+    background-color: #313131;
+    border: 1px solid #313131;
+    color: #ffffff;
+  }
+  
+  .shop_section .box .btn-box a:hover {
+    background-color: transparent;
+    color: #313131;
+  }
+</style>
 
 <!-- Product section-->
 {% for my_image in my_images %}
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <figure class="col-md-6"><img class="img-fluid rounded" src="{{ my_image.image.url}}" alt="..." id="img2" />
+            <!-- <figure class="col-md-6">
+                {% if my_image.image %}
+                <img class="img-fluid rounded" src="{{ my_image.image.url}}" alt="..." id="img2" />
+                {% else %}
+                <img class="img-fluid rounded" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg" alt="..." id="img2" />
+                {% endif %}
             </figure>
             <div class="col-md-5">
                 <h1 class="display-5 fw-bolder">{{ my_image.team_name.team_name }}팀 회식비</h1>
                 <p class="lead">{{ my_image.people_num|mul:5 }}만원</p>
-            </div>
+            </div> -->
+            <section class="shop_section layout_padding">
+                <div class="container">
+                  <div class="box">
+                    <div class="detail-box">
+                      <h2>
+                        {{ my_image.team_name.team_name }}팀 회식비
+                      </h2>
+                      <p>
+                        {{ my_image.people_num|mul:5 }}만원
+                      </p>
+                    </div>
+                    <div class="img-box">
+                        {% if my_image.image %}
+                        <img class="img-fluid rounded" src="{{ my_image.image.url}}" alt="..." id="img2" />
+                        {% else %}
+                        <img class="img-fluid rounded" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg" alt="..." id="img2" />
+                        {% endif %}
+                    </div>
+                    <div class="btn-box">
+                      <a href="/result/{my_image.id}/">
+                        상세내역 확인하기
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
         </div>
     </div>
 </section>
