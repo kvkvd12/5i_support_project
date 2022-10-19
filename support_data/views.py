@@ -41,7 +41,7 @@ def result(request, id):
 def my_result(request):
     if request.method == 'GET':
         all_image = Support.objects.all()
-        my_image = all_image.filter(id=request.user.id)
+        my_image = all_image.filter(team_name=request.user)
     return render(request, 'support_data/my_result.html', {'my_image':my_image})
     
     
