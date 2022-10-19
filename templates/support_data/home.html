@@ -28,9 +28,9 @@
   
   .shop_section .box .img-box img {
     max-width: 100%;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    justify-content: center;
+    display: block;
+    margin: auto;
+    padding-top: 20px;
   }
   
   .shop_section .box .btn-box {
@@ -56,17 +56,6 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <!-- <figure class="col-md-6">
-                {% if my_image.image %}
-                <img class="img-fluid rounded" src="{{ my_image.image.url}}" alt="..." id="img2" />
-                {% else %}
-                <img class="img-fluid rounded" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg" alt="..." id="img2" />
-                {% endif %}
-            </figure>
-            <div class="col-md-5">
-                <h1 class="display-5 fw-bolder">{{ my_image.team_name.team_name }}팀 회식비</h1>
-                <p class="lead">{{ my_image.people_num|mul:5 }}만원</p>
-            </div> -->
             <section class="shop_section layout_padding">
                 <div class="container">
                   <div class="box">
@@ -75,14 +64,14 @@
                         {{ my_image.team_name.team_name }}팀 회식비
                       </h2>
                       <p>
-                        {{ my_image.people_num|mul:5 }}만원
+                        {{ my_image.created_at}}
                       </p>
                     </div>
                     <div class="img-box">
                         {% if my_image.image %}
-                        <img class="img-fluid rounded" src="{{ my_image.image.url}}" alt="..." id="img2" />
+                        <img src="{{ my_image.image.url}}" alt="..."  />
                         {% else %}
-                        <img class="img-fluid rounded" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg" alt="..." id="img2" />
+                        <img src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg" alt="..." />
                         {% endif %}
                     </div>
                     <div class="btn-box">
