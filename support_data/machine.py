@@ -2,8 +2,10 @@ import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 import torch
 import cv2
-from django.conf import settings
+from django.conf import settings 
 
+
+# yolov5 깃헙 저장소에서 모델을 로드
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 
 def transform_image(image):
