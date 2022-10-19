@@ -207,8 +207,8 @@
             <div class="sign-in-container">
                 <form method="post" action="/signup/">
                     {% csrf_token %}
-                    <h1>Create Account</h1>
-                    <span>or use your email for registration</span>
+                    <h1>회원가입</h1>
+                    <span></span>
                     <input type="text" placeholder="Team Name" name="team_name">
                     <input type="text" placeholder="ID" name="username">
                     <input type="password" placeholder="Password" name="password">
@@ -218,15 +218,16 @@
                         {{ error }}
                     </div>
                     {% endif %}
-                    <button class="form_btn">Sign Up</button>
+                    <button class="form_btn">회원가입</button>
                 </form>
             </div>
             <div class="overlay-container">
-                <div class="overlay-right">
-                    <h1>Welcome</h1>
-                    <p>5i에서 회식비를 지원받고 싶은 당신!! 얼른 가입하세요^_^</p>
-                    <p>이미 가입했다면 로그인하러 가십쇼!!</p>
-                    <button id="signIn" class="overlay_btn"><a href="/login" style="text-decoration: none; color: inherit;">login</a></button>
+                <div class="overlay-right" style="text-align: center;">
+                    <h1>환영합니다!</h1>
+                    <p>5i에서 회식비를 지원받고 싶은 당신! 얼른 가입하세요</p>
+                    -------------------------------------------
+                    <p>이미 가입했다면 로그인을 해주세요</p>
+                    <button id="signIn" class="overlay_btn"><a href="/login" style="text-decoration: none; color: inherit;">로그인</a></button>
                 </div>
             </div>
         </div>

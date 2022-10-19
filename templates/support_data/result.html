@@ -20,16 +20,14 @@
                 <!-- Post header-->
                 <header class="mb-4">
                     <!-- Post title-->
-                    <h1 class="fw-bolder mb-1">{{ my_image.team_name.team_name }}팀 회식비 신청내역 </h1>
+                    <h1 class="fw-bolder mb-1"> {{ my_image.team_name.team_name }}팀의 회식비 신청 내역 </h1>
                 </header>
                 <!-- Preview image figure-->
                 <figure class="mb-4"><img class="img-fluid rounded" style="margin-left:5px;" src="{{ my_image.image.url}}" alt="..." id="img" />
                 </figure>
                 <!-- Post content-->
                 <section class="mb-5">
-                    <p class="lead">5i에서 회식비를 지원해드립니다! 회식비는 인당 5만원씩 지원해드립니다. 참가했다는걸 인증하기 위해 사진을 올려주세요! 사진에서 사람을 인식해 입력한
-                        인원수와 맞는지 확인하여 일치할 경우 회식비를 지원해드립니다</p>
-                    <h2 class="fw-bolder mb-4 mt-5">{{ my_image.team_name.team_name }}팀의 회식비 신청 내역</h2>
+                    <!-- <h2 class="fw-bolder mb-4 mt-5">{{ my_image.team_name.team_name }}팀의 회식비 신청 내역</h2> -->
                     <p class="fs-5 mb-4">인원 수 : {{ my_image.people_num }} 명</p>
                     <p class="fs-5 mb-4">금액 : {{ my_image.people_num|mul:5 }}(만원) </p>
                 </section>
@@ -71,8 +69,7 @@
                 <div class="card-header">둘러보기</div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/home'">다른 팀의 승인내역
-                            확인하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청내역 확인하기</button>
                     </div>
                 </div>
             </div>
