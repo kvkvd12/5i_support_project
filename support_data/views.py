@@ -99,3 +99,8 @@ def delete_image(request,id):
     my_image = Support.objects.get(id=id)
     my_image.delete()
     return redirect('/')
+
+def my_objection(request, id):
+    if request.method == 'GET':
+        my_image = Support.objects.get(id=id)
+        return render(request, 'support_data/my_objection.html', {'my_image':my_image})        
