@@ -48,11 +48,18 @@ def result(request, id):
         return render(request, 'support_data/result.html', {'my_image':my_image})
     
     
-def my_result(request):
+def my_result(request): #id=request.user.id
     if request.method == 'GET':
         all_image = Support.objects.all()
         my_image = all_image.filter(team_name=request.user)
     return render(request, 'support_data/my_result.html', {'my_image':my_image})
+
+
+def team_result(request):
+    if request.method == 'GET':
+        all_image = Support.objects.all()
+        my_image = all_image.filter(team_name__team_name=request.user.team_name)
+    return render(request, 'support_data/team_result.html', {'my_image':my_image})
     
     
 @login_required    
