@@ -27,7 +27,13 @@
                 <td>{{ mi.people_num }} 명</td>
                 <td>{{ mi.people_num|mul:5 }} (만원)</td>
                 <td>{{ mi.created_at|date:"Y.m.d" }} </td>
-                <td>승인완료</td>
+                <td>
+                  {% if mi.is_approval == False %}
+                  <p style="color: red;">승인중</p>
+                  {% else %}
+                  <p style="color: blue;">승인완료</p>
+                  {% endif %}
+                </td>
               </tr>
             {% endfor %}
             </tbody>

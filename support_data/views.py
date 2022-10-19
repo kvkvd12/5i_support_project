@@ -69,15 +69,6 @@ def approval_list(request):
         approval_list = Support.objects.all()
         return render(request, 'support_data/approval.html', {'approval_list': approval_list})
 
-# @login_required        
-# def approval(request, id):
-#     if request.method == 'POST':
-#         approval = Support.objects.get(id=id)
-#         is_approval = request.POST.get('is_approval','')
-        
-#         return redirect('/approval',{'approval':approval })
-    
-
 @login_required
 def approval(request, id):
     me = request.user
@@ -86,16 +77,14 @@ def approval(request, id):
     click_approval.save()
     return redirect('/approval')
 
-
-
+@login_required    
+def objection_list(request):
+    if request.method == 'GET':
+        objection_list = Support.objects.all()
+        return render(request, 'support_data/objection_list.html', {'objection_list': objection_list})
+    
 def objection(request):
     if request.method == 'GET':
         return render (request, 'support_data/objection.html')
-    elif request.method == 'POST':
-        team_name = request.user
-        content = request.POST.get("content")
-        #image = request.FILES.get("image")
-        Support.objects.create(content=content, team_name=team_name)
-        return redirect('/')    
 
 
