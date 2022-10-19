@@ -3,7 +3,14 @@
 {% block content %}
 {% load mathfilters %}
 
-
+<style>
+    .img-fluid {
+        max-width: 100%;
+        display: block;
+        margin: auto;
+        padding-top: 20px;
+    }
+</style>
 <!-- Page content-->
 <div class="container mt-5">
 
@@ -74,8 +81,9 @@
                 <div class="card-header">확인하기</div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/my_result'">나의 신청내역 확인하기</button>
-                    </div>        
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/my_result'">나의 신청내역
+                            확인하기</button>
+                    </div>
                 </div>
             </div>
             <div class="card mb-4">
