@@ -12,6 +12,7 @@
             <thead>
               <tr>
                 <th scope="col">팀이름</th>
+                <th scope="col">상세페이지</th>
                 <th scope="col">인원 수</th>
                 <th scope="col">신청금액</th>
                 <th scope="col">신청날짜</th>
@@ -21,7 +22,8 @@
             <tbody>
             {% for mi in my_image %}
               <tr>
-                <th><a href="/result/{{mi.id}}/" style="color:black">{{ mi.team_name.team_name }}팀</a></th>
+                <th>{{ mi.team_name.team_name }}팀</th>
+                <td><a href="/result/{{mi.id}}/" style="color:black">신청내역 확인하기</a></td>
                 <td>{{ mi.people_num }} 명</td>
                 <td>{{ mi.people_num|mul:5 }} (만원)</td>
                 <td>{{ mi.created_at|date:"Y.m.d" }} </td>
@@ -31,7 +33,7 @@
             </tbody>
         </table>
         <div style="text-align:center">
-            <button class="btn btn-secondary" type="submit" onclick="location.href='/home'">다른 팀의 승인내역 확인하기</button>
+            <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청내역 확인하기</button>
             <button class="btn btn-secondary" type="submit" onclick="location.href='/upload'">회식비 추가 신청하기</button>
         </div>
     </div>

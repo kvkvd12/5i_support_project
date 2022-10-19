@@ -8,7 +8,7 @@ def signup(request):
     if request.method == 'GET':
         user = request.user.is_authenticated
         if user:
-            return redirect('/home')
+            return redirect('/')
         else:
             return render(request, 'user/signup.html')
     
@@ -35,7 +35,7 @@ def login(request):
     if request.method == 'GET':
         user = request.user.is_authenticated
         if user:
-            return redirect('/home')
+            return redirect('/')
         else:
             return render(request, 'user/login.html')
         
@@ -46,9 +46,9 @@ def login(request):
         me = auth.authenticate(request, username=username, password=password)
         if me is not None:
             auth.login(request, me)
-            return redirect('/home')
+            return redirect('/')
         else:
-            return render(request,'user/login.html',{'error':'유저이름 혹은 패스워드를 확인 해 주세요'})
+            return render(request,'user/login.html',{'error':'ID 혹은 PW를 확인 해 주세요'})
     
 def logout(request):
     auth.logout(request)

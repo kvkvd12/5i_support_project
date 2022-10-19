@@ -6,9 +6,12 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def home(request):
-    if request.method == 'GET':
+    user = request.user.is_authenticated
+    if user:
         my_images = Support.objects.all().order_by('-id')
         return render(request, 'support_data/home.html', {'my_images':my_images})
+    else:
+        return redirect('/login')
      
 
 def upload(request):
