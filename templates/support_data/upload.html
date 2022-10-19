@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}result{% endblock %}
+{% block title %}upload{% endblock %}
 {% block content %}
     <!-- Product section-->
     <section class="py-5">
@@ -9,6 +9,7 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
 
                     <div class="col-md-6">
+                        
                         <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg"
                             alt="..." id="img" />
                         
@@ -29,12 +30,16 @@
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 Upload
                             </button>
-                            {% if error %}
-                            <div style="color:red;" role="alert">
-                                {{ error }}
-                            </div>
-                            {% endif %}
                         </div>
+                            {% if error %}
+                                
+                                <div style="color:red;" role="alert">{{ error }}</div>
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                    이의제기하기
+                                </button>
+                            
+                            {% endif %}
+                        
                     </div>
                 </div>
             </form>

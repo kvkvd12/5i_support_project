@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}error{% endblock %}
+{% block content %}
+<!-- Product section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <form method="post" action="/upload/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row gx-4 gx-lg-5 align-items-center">
+
+                <div class="col-md-6">
+
+                    <img class="card-img-top mb-5 mb-md-0" src="{{my_image.write_image.url}}" alt="..." id="img" />
+
+                </div>
+                <div class="col-md-6">
+                    <h1 class="display-5 fw-bolder">{{ user.team_name }} 회식비 신청 오류</h1>
+                    <div class="fs-5 mb-5">
+                        <span></span>
+                    </div>
+                    <div class="card" style="width: 30rem; border-color: aliceblue;">
+                        <div class="card-body">
+                            <h5 class="card-title">오류입니다!</h5>
+                                <br>
+                            <p class="card-text">아래가 오류의 원인이 될 수 있습니다
+                                <br> 1. 인원 수 오기입
+                                <br> 2. 머신러닝 오작동
+                                <br>
+                            <br> 오류의 원인을 확인하시어 2번일 경우 아래 이의제기버튼을 눌러 이의제기를 해 주세요
+                        </p>
+                        </div>
+                    </div>
+                    <table class="table" style="margin-top: 30px;">
+                        <thead>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row"> 입력한 인원 수</th>
+                                <td>{{ my_image.input_num }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> 카운트 된 수</th>
+                                <td>{{ my_image.people_num }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="text-align:center; margin-top: 30px;">
+                      <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                        다시 신청하기
+                    </button>
+
+                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                        이의제기하기
+                    </button>  
+                    </div>
+                    
+                </div>
+            </div>
+    </div>
+    </form>
+    </div>
+</section>
+
+{% endblock %}
