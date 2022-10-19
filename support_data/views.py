@@ -96,6 +96,9 @@ def objection(request):
         content = request.POST.get("content")
         #image = request.FILES.get("image")
         Support.objects.create(content=content, team_name=team_name)
-        return redirect('/')    
+        return redirect('/')   
 
-
+def delete_image(request,id):
+    my_image = Support.objects.get(id=id)
+    my_image.delete()
+    return redirect('/')
