@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% load mathfilters %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8" style="width:100%;">
+            <div>
+                <div class="mb-4">
+                    <h3>팀 회식비 신청내역 </h3>
+                    <h6>총 승인 내역 수 : {{ support.is_approval.count }}</h6>
+                    
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">팀이름</th>
+                                <th scope="col">상세내역</th>
+                                <th scope="col">인원수</th>
+                                <th scope="col">신청금액</th>
+                                <th scope="col">신청날짜</th>
+                                <th scope="col">승인여부</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for al in approval_list %}
+                            <tr>
+                                <th scope="row">{{ al.team_name.team_name }}팀</th>
+                                <td><a href="/result/{{al.id}}/" style="color:black; text-decoration: none;">신청내역 확인하기</a></td>
+                                <td>{{ al.people_num }} 명</td>
+                                <td>{{ al.people_num|mul:5 }} 만원</td>
+                                <td>{{ al.created_at|date:"Y.m.d" }}</td>
+                                <td>
+                                    {% if al.is_approval %}
+                                    <a style="color:blue">승인완료</a>
+                                    {% else %}
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{ al.id }}" style="text-decoration: none; color: red;">
+                                        승인대기
+                                    </a>
+                                    <div class="modal fade" id="exampleModal{{ al.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{ al.team_name.team_name }}팀 회식비 승인</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    승인완료 하시면 되돌리지 못합니다. 그래도 승인하시겠습니까?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                                    <button type="button" class="btn btn-primary">
+                                                    <a href="/approval/{{ al.id }}" class="card-link" style="text-decoration: none; color: inherit;">
+                                                        승인
+                                                    </a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
