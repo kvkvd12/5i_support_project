@@ -50,26 +50,21 @@ def approval_list(request):
         approval_list = Support.objects.all()
         return render(request, 'support_data/approval.html', {'approval_list': approval_list})
 
-@login_required        
-def approval(request, id):
-    approval = Support.objects.get(id=id)
-    approval.is_approval.save()
-    approval.save()
-    
-    approval=True
-    
-    return redirect('/approval')
-    
-
 # @login_required        
 # def approval(request, id):
-#     me = request.user
-#     approval=approval
-#     click = Support.objects.get(id=id)
-#     if me in click.approval.all():
-#         approval=True
-#     else:
-#         click.approval.add(request.user)
-#     return redirect('/approval')
+#     if request.method == 'POST':
+#         approval = Support.objects.get(id=id)
+#         is_approval = request.POST.get('is_approval','')
+        
+#         return redirect('/approval',{'approval':approval })
+    
+
+@login_required
+def approval(request, id):
+    me = request.user
+    click_approval = Support.objects.get(id=id)
+    click_approval.is_approval=not click_approval.is_approval
+    click_approval.save()
+    return redirect('/approval')
 
 
