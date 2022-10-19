@@ -87,4 +87,15 @@ def objection(request):
     if request.method == 'GET':
         return render (request, 'support_data/objection.html')
 
+    elif request.method == 'POST':
+        team_name = request.user
+        content = request.POST.get("content")
+        #image = request.FILES.get("image")
+        Support.objects.create(content=content, team_name=team_name)
+        return redirect('/')   
 
+
+def delete_image(request,id):
+    my_image = Support.objects.get(id=id)
+    my_image.delete()
+    return redirect('/')
