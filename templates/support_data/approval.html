@@ -30,9 +30,9 @@
                                 <td>{{ al.created_at|date:"Y.m.d" }}</td>
                                 <td>
                                     {% if al.is_approval %}
-                                    승인완료
+                                    <a style="color:blue">승인완료</a>
                                     {% else %}
-                                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none; color: inherit;">
+                                    <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none; color: red;">
                                         승인대기
                                     </a>
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
