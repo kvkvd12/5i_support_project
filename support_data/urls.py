@@ -7,6 +7,9 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('upload/', views.upload, name='upload'),
     path('result/<int:id>/', views.result, name='result'),
+    path('my_result/', views.my_result, name='my_result'),
+    path('team_result/', views.team_result, name='team_result'),
+    
     path('approval/', views.approval_list, name='approval_list'),
     path('approval/<int:id>/', views.approval, name='approval'),
     path('my_result/', views.my_result, name='my_result'),
