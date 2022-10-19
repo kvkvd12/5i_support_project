@@ -16,7 +16,7 @@ urlpatterns = [
     path('objection/', views.objection, name='objection'),
     path('delete/<int:id>', views.delete_image, name='delete'),
     path('objection_list/', views.objection_list, name='objection_list'),
+    path('my_objection/<int:id>/', views.my_objection, name='my_objection'),
     # path('objection_list/<int:id>/', views.object, name='objection_list'),
-
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

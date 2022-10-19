@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}my_objection{% endblock %}
+{% block content %}
+{% load mathfilters %}
+<style>
+    .img-fluid {
+        max-width: 100%;
+        display: block;
+        margin: auto;
+        padding-top: 20px;
+    }
+</style>
+<!-- Page content-->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1"> {{ my_image.team_name.team_name }}팀의 이의 신청 내역 </h1>
+                </header>
+                <!-- Preview image figure-->
+                <figure class="mb-4"><img class="img-fluid rounded" style="margin-left:5px;" src="{{ my_image.image.url}}" alt="..." id="img" />
+                </figure>
+                <!-- Post content-->
+                <section class="mb-5">
+                    <!-- <h2 class="fw-bolder mb-4 mt-5">{{ my_image.team_name.team_name }}팀의 회식비 신청 내역</h2> -->
+                    <p class="fs-5 mb-4">인원 수 : {{ my_image.people_num }} 명</p>
+                    <p class="fs-5 mb-4">금액 : {{ my_image.people_num|mul:5 }}(만원) </p>
+                </section>
+            </article>
+            
+            
+        </div>
+
+        <!-- Side widgets-->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">둘러보기</div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청내역 확인하기</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">확인하기</div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/my_result'">나의 신청내역
+                            확인하기</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">추가하기</div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/upload'">회식비 추가
+                            신청하기</button>
+                    </div>
+                </div>
+            </div>
+            <table class="table" style="margin-top: 30px;">
+                <thead>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"> 입력한 인원 수</th>
+                        <td>{{ my_image.input_num }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> 카운트 된 수</th>
+                        <td>{{ my_image.people_num }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+</div>
+{% endblock %}
