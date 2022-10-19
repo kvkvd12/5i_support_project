@@ -13,7 +13,7 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; z-index: 1; width: 100%;">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/home">회식비 신청 사이트</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -28,7 +28,7 @@
                             <a href="/approval" style="text-decoration: none; color: inherit;">승인</a>
                         </button>
                         {% else %}
-                        <button class="btn btn-outline-dark" type="submit" >
+                        <button class="btn btn-outline-dark" type="submit" style="margin-right: 20px;">
                             <a href="/upload" style="text-decoration: none; color: inherit;">신청하기</a>
                         </button>
                         {% endif %}
@@ -41,9 +41,9 @@
         </nav>
         {% block content %}
         {% endblock %}
-        <!-- Footer-->
-        <div id='wrapper'>
-            <footer class="py-5 bg-dark" style="position : relative; transform : translateY(85%);">
+<!-- Footer-->
+        <div id='wrapper' style="position: fixed; bottom: 0; width: 100%;">
+            <footer class="py-5 bg-dark" style="position : relative; transform : translateY(5%);">
                 <div class="container" style="height: 0px; margin-top:-11px;">
                     <p class="m-0 text-center text-white">회식비 신청 사이트 2022</p></div>
             </footer>
