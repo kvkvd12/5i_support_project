@@ -76,10 +76,32 @@
                                         <img src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg" alt="..." />
                                         {% endif %}
                                     </div>
+                                    <!-- Button trigger modal -->
                                     <div class="btn-box">
-                                        <a href="/result/{my_image.id}/">
-                                            상세내역 확인하기
-                                        </a>
+                                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal{{my_image.id}}">
+                                            <span class="material-symbols-outlined">지원금액 확인하기</span>
+                                        </button>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal{{my_image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">지원금액 확인</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{ my_image.team_name.team_name }}팀의 지원금액은 {{ my_image.people_num|mul:5 }} (만원) 입니다
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                                            <span class="material-symbols-outlined">close</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +111,7 @@
             </section>
             {% endfor %}
         </div>
-    <!-- Side widgets-->
+        <!-- Side widgets-->
         <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-header">확인하기</div>
