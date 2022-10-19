@@ -14,5 +14,6 @@ urlpatterns = [
     path('approval/<int:id>/', views.approval, name='approval'),
     path('my_result/', views.my_result, name='my_result'),
     path('error/<int:id>/', views.error, name='error'),
+    path('objection/', views.objection, name='objection'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
