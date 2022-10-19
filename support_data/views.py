@@ -37,6 +37,14 @@ def result(request, id):
         my_image = Support.objects.get(id=id)
         return render(request, 'support_data/result.html', {'my_image':my_image})
     
+    
+def my_result(request):
+    if request.method == 'GET':
+        all_image = Support.objects.all()
+        my_image = all_image.filter(id=request.user.id)
+    return render(request, 'support_data/my_result.html', {'my_image':my_image})
+    
+    
 @login_required    
 def approval_list(request):
     if request.method == 'GET':
@@ -64,3 +72,5 @@ def approval(request, id):
 #     else:
 #         click.approval.add(request.user)
 #     return redirect('/approval')
+
+
