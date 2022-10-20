@@ -5,12 +5,14 @@ from .models  import Support
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import F
 
 # Create your views here.
 def home(request):
     user = request.user.is_authenticated
     if user:
-        my_images = Support.objects.all().order_by('-id')
+        # my_images = Support.objects.all().order_by('-id')
+        my_images = Support.objects.filter(input_num=F("people_num"))
         return render(request, 'support_data/home.html', {'my_images':my_images})
     else:
         return redirect('/login')
@@ -49,11 +51,15 @@ def result(request, id):
         return render(request, 'support_data/result.html', {'my_image':my_image})
     
     
-def my_result(request): #id=request.user.id
+def my_result(request): 
     if request.method == 'GET':
         all_image = Support.objects.all()
         my_image = all_image.filter(team_name=request.user)
-    return render(request, 'support_data/my_result.html', {'my_image':my_image})
+        # 일치하는 이미지만 보여주는 코드
+        true_image = my_image.filter(input_num=F("people_num"))
+        # 오류난 이미지만 보여주는 코드
+        false_image = my_image.exclude(input_num=F("people_num"))
+    return render(request, 'support_data/my_result.html', {'my_image':my_image, 'true_image':true_image, 'false_image':false_image})
 
 
 def team_result(request):
