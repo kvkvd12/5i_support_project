@@ -23,9 +23,15 @@ def upload(request):
         return render(request, 'support_data/upload.html')
     if request.method == 'POST':
         image = request.FILES.get('image','')
+        # 이미지값이 없을 때 오류처리
+        if not image:
+            return render(request,'support_data/upload.html',{'error':'사진을 첨부해주세요!','image':image})
         write_image = request.FILES.get('image','')
         team_name = request.user
         input_num = request.POST.get('input_num','')
+        # 입력값이 없을 때 오류처리
+        if not input_num:
+            return render(request,'support_data/upload.html',{'error':'숫자를 입력해주세요!','input_num':input_num})
         my_image = Support.objects.create(image=image,write_image=write_image, team_name=team_name,input_num=input_num)
         my_image.save()
         # 머신러닝 코드 불러오기
@@ -35,8 +41,7 @@ def upload(request):
         if int(input_num) == my_image.people_num:
             return redirect(f'/result/{my_image.id}/')
         else:
-            
-            return redirect(f'/error/{my_image.id}/',{'error':'인원 수가 일치하지 않습니다'})
+            return redirect(f'/error/{my_image.id}/')
 
 def error(request, id):
     if request.method == 'GET':
