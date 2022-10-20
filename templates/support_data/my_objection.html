@@ -2,46 +2,92 @@
 {% block title %}my_objection{% endblock %}
 {% block content %}
 {% load mathfilters %}
+
+<!-- Page content-->
 <style>
-    .img-fluid {
+    .shop_section .box {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .shop_section .box .detail-box h2 {
+        font-weight: bold;
+        font-size: 3rem;
+    }
+
+    .shop_section .box .detail-box p {
+        margin-bottom: 0;
+    }
+
+    .shop_section .box .img-box img {
         max-width: 100%;
         display: block;
         margin: auto;
         padding-top: 20px;
     }
+
 </style>
-<!-- Page content-->
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8">
-            <!-- Post content-->
-            <article>
-                <!-- Post header-->
-                <header class="mb-4">
-                    <!-- Post title-->
-                    <h1 class="fw-bolder mb-1"> {{ my_image.team_name.team_name }}팀의 이의 신청 내역 </h1>
-                </header>
-                <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" style="margin-left:5px;" src="{{ my_image.image.url}}" alt="..." id="img" />
-                </figure>
-                <!-- Post content-->
-                <section class="mb-5">
-                    <!-- <h2 class="fw-bolder mb-4 mt-5">{{ my_image.team_name.team_name }}팀의 회식비 신청 내역</h2> -->
-                    <p class="fs-5 mb-4">인원 수 : {{ my_image.people_num }} 명</p>
-                    <p class="fs-5 mb-4">금액 : {{ my_image.people_num|mul:5 }}(만원) </p>
-                </section>
-            </article>
-            
-            
-        </div>
+            <!-- Page content-->
+            <section class="py-5">
+                <div class="container px-4 px-lg-5 my-5">
+                    <div class="row gx-4 gx-lg-5 align-items-center">
+                        <section class="shop_section layout_padding">
+                            <div class="container">
+                                <div class="box">
+                                    <div class="detail-box">
+                                        <h2>
+                                            {{ my_image.team_name.team_name }}팀 오류 신고 내역
+                                        </h2>
+                                        <p>
+                                            {{ my_image.write_image.created_at}}
+                                        </p>
+                                    </div>
+                                    <div class="img-box">
+                                        <img src="{{my_image.write_image.url}}" alt="..." />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+            <table class="table">
+                <thead>
 
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"> 입력한 인원 수</th>
+                        <td>{{ my_image.input_num }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"> 카운트 된 인원 수</th>
+                        <td>{{ my_image.people_num }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-header">둘러보기</div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청내역 확인하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청내역
+                            확인하기</button>
                     </div>
                 </div>
             </div>
@@ -63,24 +109,8 @@
                     </div>
                 </div>
             </div>
-            <table class="table" style="margin-top: 30px;">
-                <thead>
-
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row"> 입력한 인원 수</th>
-                        <td>{{ my_image.input_num }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row"> 카운트 된 수</th>
-                        <td>{{ my_image.people_num }}</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
-    
-
 </div>
+        
 {% endblock %}

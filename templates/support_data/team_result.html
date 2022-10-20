@@ -22,7 +22,7 @@
             <tbody>
             {% for mi in my_image %}
               <tr>
-                <th>{{ mi.team_name.team_name }}팀(username:{{mi.team_name.username}})</th>
+                <th>{{ mi.team_name.team_name }}팀 (신청자 ID : {{mi.team_name.username}})</th>
                 <td><a href="/result/{{mi.id}}/" style="color:black">신청내역 확인하기</a></td>
                 <td>{{ mi.people_num }} 명</td>
                 <td>{{ mi.people_num|mul:5 }} (만원)</td>
