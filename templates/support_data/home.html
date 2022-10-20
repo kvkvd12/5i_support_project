@@ -76,15 +76,17 @@
                                         <img src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg" alt="..." />
                                         {% endif %}
                                     </div>
-                                    {% if team_name == support.team_name.team_name %}
+                                    
                                     <!-- Button trigger modal -->
                                     <div class="btn-box">
                                         <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal{{my_image.id}}">
                                             <span class="material-symbols-outlined">지원금액 확인하기</span>
                                         </button>
+                                        {% if my_image.team_name == user %}
                                         <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#deleteModal{{my_image.id}}">
                                             <span class="material-symbols-outlined">신청 취소하기</span>
                                         </button>
+                                        {% endif %}
                                     </div>
                                     <!-- 지원금 확인하기 Modal -->
                                     <div class="modal fade" id="exampleModal{{my_image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -130,7 +132,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {% endif %}
                                 </div>
                             </div>
                         </section>
