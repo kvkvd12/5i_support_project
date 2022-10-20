@@ -1,5 +1,6 @@
 # tweet/models.py
 from django.db import models
+from traitlets import default
 from user.models import User
 
 # Create your models here.
@@ -14,4 +15,4 @@ class Support(models.Model):
     input_num = models.CharField(max_length=128)
     is_approval = models.BooleanField(default=False)
     write_image = models.ImageField(upload_to = "write_images/")
-    
+    objection = models.BooleanField(default=False)
