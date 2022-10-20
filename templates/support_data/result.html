@@ -2,26 +2,6 @@
 {% block title %}result{% endblock %}
 {% block content %}
 {% load mathfilters %}
-<script language='javascript'>
-
-    function fileSize() {
-    alert(document.aaa.pre.fileSize);
-    }
-    
-    function dreamkos_imgview()
-    {
-      img_pre = 'pre';
-      if(event.srcElement.value.match(/(.jpg|.jpeg|.gif|.png)/)) {
-        document.images[img_pre].src = event.srcElement.value;
-        document.images[img_pre].style.display = '';
-      }
-      else {
-      document.images[img_pre].style.display = 'none';
-      }
-    }
-
-    </script>
-
 <style>
     .img-fluid {
         max-width: 100%;
