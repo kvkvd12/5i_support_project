@@ -71,23 +71,27 @@
                                     </div>
                                     <div class="img-box">
                                         {% if my_image.image %}
-                                        <img src="{{ my_image.image.url}}" alt="..." />
+                                        <img src="{{ my_image.image.url }}" alt="..." />
                                         {% else %}
                                         <img src="https://dummyimage.com/600x500/dee2e6/6c757d.jpg" alt="..." />
                                         {% endif %}
                                     </div>
+                                    {% if team_name == support.team_name.team_name %}
                                     <!-- Button trigger modal -->
                                     <div class="btn-box">
                                         <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal{{my_image.id}}">
                                             <span class="material-symbols-outlined">지원금액 확인하기</span>
                                         </button>
+                                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#deleteModal{{my_image.id}}">
+                                            <span class="material-symbols-outlined">신청 취소하기</span>
+                                        </button>
                                     </div>
-                                    <!-- Modal -->
+                                    <!-- 지원금 확인하기 Modal -->
                                     <div class="modal fade" id="exampleModal{{my_image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">지원금액 확인</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">지원금액 확인하기</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -103,6 +107,30 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- 삭제하기 Modal -->
+                                    <div class="modal fade" id="deleteModal{{my_image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">신청 취소하기</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    정말 신청을 취소하시겠습니까?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <button type="button" class="btn btn-light me-md-2"><a href="/">
+                                                                <span class="material-symbols-outlined" style="color:black;"><a href="/delete/{{my_image.id}}">delete</a></span>
+                                                            </a></button>
+                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                                            <span class="material-symbols-outlined">close</span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </section>
@@ -126,8 +154,7 @@
                 <div class="card-header">확인하기</div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/team_result'">우리팀의 신청내역
-                            확인하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/team_result'">우리팀의 신청내역 확인하기</button>
                     </div>
                 </div>
             </div>

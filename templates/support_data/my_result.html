@@ -27,15 +27,52 @@
                 <td>{{ mi.people_num }} 명</td>
                 <td>{{ mi.people_num|mul:5 }} (만원)</td>
                 <td>{{ mi.created_at|date:"Y.m.d" }} </td>
-                <td>승인완료</td>
+                <td>
+                  {% if mi.is_approval == False %}
+                  <p style="color: red;">승인중</p>
+                  {% else %}
+                  <p style="color: blue;">승인완료</p>
+                  {% endif %}
+                </td>
               </tr>
             {% endfor %}
             </tbody>
         </table>
-        <div style="text-align:center">
-            <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청내역 확인하기</button>
-            <button class="btn btn-secondary" type="submit" onclick="location.href='/upload'">회식비 추가 신청하기</button>
-        </div>
     </div>
+
+    <div class="row" >
+      <h2 class="fw-bolder mb-4 mt-5">{{ user.username }}님의 오류 신청 내역</h2>
+      
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">팀이름</th>
+              <th scope="col">상세페이지</th>
+              <th scope="col">사용자가 입력한 인원 수</th>
+              <th scope="col">확인된 인원 수</th>
+              <th scope="col">신청금액</th>
+              <th scope="col">신청날짜</th>
+              <th scope="col">승인여부</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for mi in my_image %}
+            <tr>
+              <th>{{ mi.team_name.team_name }}팀</th>
+              <td><a href="/my_objection/" style="color:black">오류 신청 내역 확인하기</a></td>
+              <td>{{ mi.input_num }} 명</td>
+              <td>{{ mi.people_num }} 명</td>
+              <td>{{ mi.people_num|mul:5 }} (만원)</td>
+              <td>{{ mi.created_at|date:"Y.m.d" }} </td>
+              <td>확인중</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+      <div style="text-align:center; margin-top:100px;" >
+        <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청내역 확인하기</button>
+        <button class="btn btn-secondary" type="submit" onclick="location.href='/upload'">회식비 추가 신청하기</button>
+    </div>
+  </div>
 </div>
 {% endblock %}

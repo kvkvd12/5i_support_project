@@ -32,8 +32,6 @@
                     <p class="fs-5 mb-4">금액 : {{ my_image.people_num|mul:5 }}(만원) </p>
                 </section>
             </article>
-            <!-- Comments section -->
-            
         </div>
 
         <!-- Side widgets-->
@@ -50,22 +48,12 @@
                 <div class="card-header">확인하기</div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/my_result'">나의 신청내역
-                            확인하기</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-header">추가하기</div>
-                <div class="card-body">
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/upload'">회식비 추가
-                            신청하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/my_result'">나의 신청내역 확인하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/team_result'">나의 팀 신청내역 확인하기</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 {% endblock %}
