@@ -81,13 +81,14 @@
             </table>
         </div>
         <!-- Side widgets-->
-        <div class="col-lg-4" style="margin-top:103px;">
+        {% if user.username == 'a' %}
+        {% else %}
+        <div class="col-lg-4" style="margin-top: 100px;">
             <div class="card mb-4">
                 <div class="card-header">둘러보기</div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청내역
-                            확인하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청 확인하기</button>
                     </div>
                 </div>
             </div>
@@ -95,21 +96,13 @@
                 <div class="card-header">확인하기</div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/my_result'">나의 신청내역
-                            확인하기</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-header">추가하기</div>
-                <div class="card-body">
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/upload'">회식비 추가
-                            신청하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/my_result'">나의 신청내역 확인하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/team_result'">우리팀 신청내역 확인하기</button>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
         

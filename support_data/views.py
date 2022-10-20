@@ -66,8 +66,7 @@ def team_result(request):
     if request.method == 'GET':
         all_image = Support.objects.all()
         my_image = all_image.filter(team_name__team_name=request.user.team_name)
-        true_image = my_image.filter(input_num=F("people_num"))
-    return render(request, 'support_data/team_result.html', {'my_image':my_image, 'true_image':true_image})
+    return render(request, 'support_data/team_result.html', {'my_image':my_image})
     
     
 @login_required    
@@ -95,7 +94,7 @@ def objection_list(request):
         return render(request, 'support_data/objection_list.html', {'objection_list': objection_list, 'objection': objection})
 
 @login_required    
-def objection(request, id):
+def objection(request,id):
     me = request.user
     click_objection = Support.objects.get(id=id)
     click_objection.is_approval=not click_objection.is_approval

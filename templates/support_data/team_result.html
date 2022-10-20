@@ -8,7 +8,7 @@
     <div class="row" >
         <h2 class="fw-bolder mb-4 mt-5">{{ user.team_name }}팀의 회식비 신청 내역</h2>
         
-        <table class="table table-striped">
+        <table class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">팀이름</th>
@@ -23,7 +23,7 @@
             {% for ti in true_image %}
               <tr>
                 <th>{{ ti.team_name.team_name }}팀 (신청자 ID : {{ti.team_name.username}})</th>
-                <td><a href="/result/{{mi.id}}/" style="color:black">신청내역 확인하기</a></td>
+                <td><a href="/result/{{ti.id}}/" class="record">신청내역 확인하기</a></td>
                 <td>{{ ti.people_num }} 명</td>
                 <td>{{ ti.people_num|mul:5 }} (만원)</td>
                 <td>{{ ti.created_at|date:"Y.m.d" }} </td>
@@ -39,7 +39,7 @@
             </tbody>
         </table>
         <div style="text-align:center">
-            <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청내역 확인하기</button>
+            <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청 확인하기</button>
             <button class="btn btn-secondary" type="submit" onclick="location.href='/upload'">회식비 추가 신청하기</button>
         </div>
     </div>
