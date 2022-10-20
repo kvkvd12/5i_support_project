@@ -13,7 +13,8 @@ def home(request):
     if user:
         # my_images = Support.objects.all().order_by('-id')
         my_images = Support.objects.filter(input_num=F("people_num"))
-        return render(request, 'support_data/home.html', {'my_images':my_images})
+        false_image = Support.objects.exclude(input_num=F("people_num"))
+        return render(request, 'support_data/home.html', {'my_images':my_images, 'false_image':false_image})
     else:
         return redirect('/login')
      
@@ -110,7 +111,7 @@ def objection(request,id):
 def delete_image(request,id):
     my_image = Support.objects.get(id=id)
     my_image.delete()
-    return redirect('/')
+    return redirect('/my_result')
 
 def my_objection(request, id):
     if request.method == 'GET':
