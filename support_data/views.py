@@ -63,7 +63,7 @@ def my_result(request):
         # 일치하는 이미지만 보여주는 코드
         true_image = my_image.filter(input_num=F("people_num"))
         # 오류난 이미지만 보여주는 코드
-        false_image = my_image.exclude(input_num=F("people_num"))
+        false_image = my_image.exclude(input_num=F("people_num")).exclude(objection=False)
     return render(request, 'support_data/my_result.html', {'my_image':my_image, 'true_image':true_image, 'false_image':false_image})
 
 
@@ -115,4 +115,6 @@ def delete_image(request,id):
 def my_objection(request, id):
     if request.method == 'GET':
         my_image = Support.objects.get(id=id)
+        my_image.objection = True
+        my_image.save()
         return render(request, 'support_data/my_objection.html', {'my_image':my_image})        
