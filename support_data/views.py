@@ -1,4 +1,3 @@
-import support_data
 from support_data.machine import transform_image
 from support_data.machine import rectangle_image
 from .models  import Support
@@ -8,6 +7,7 @@ from django.core.paginator import Paginator
 from django.db.models import F
 
 # Create your views here.
+
 def home(request):
     user = request.user.is_authenticated
     if user:
@@ -18,7 +18,7 @@ def home(request):
     else:
         return redirect('/login')
      
-
+@login_required   
 def upload(request):
     if request.method == 'GET':
         return render(request, 'support_data/upload.html')
@@ -43,20 +43,21 @@ def upload(request):
             return redirect(f'/result/{my_image.id}/')
         else:
             return redirect(f'/error/{my_image.id}/')
-
+        
+@login_required   
 def error(request, id):
     if request.method == 'GET':
         my_image = Support.objects.get(id=id)
         return render(request, 'support_data/error.html', {'my_image':my_image})
 
-
+@login_required   
 def result(request, id):
     if request.method == 'GET':
         # 업로드 페이지에서 저장한 내용들을 모두 받아와준다.
         my_image = Support.objects.get(id=id)
         return render(request, 'support_data/result.html', {'my_image':my_image})
     
-    
+@login_required      
 def my_result(request): 
     if request.method == 'GET':
         all_image = Support.objects.all()
@@ -67,7 +68,7 @@ def my_result(request):
         false_image = my_image.exclude(input_num=F("people_num")).exclude(objection=False)
     return render(request, 'support_data/my_result.html', {'my_image':my_image, 'true_image':true_image, 'false_image':false_image})
 
-
+@login_required   
 def team_result(request):
     if request.method == 'GET':
         all_image = Support.objects.all()
@@ -86,7 +87,6 @@ def approval_list(request):
 
 @login_required
 def approval(request, id):
-    me = request.user
     click_approval = Support.objects.get(id=id)
     click_approval.is_approval=not click_approval.is_approval
     click_approval.save()
@@ -108,11 +108,13 @@ def objection(request,id):
     click_objection.save()
     return redirect('/objection_list')  
 
+@login_required   
 def delete_image(request,id):
     my_image = Support.objects.get(id=id)
     my_image.delete()
     return redirect('/my_result')
 
+@login_required   
 def my_objection(request, id):
     if request.method == 'GET':
         my_image = Support.objects.get(id=id)

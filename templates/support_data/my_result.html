@@ -95,7 +95,7 @@
           <td><a href="/my_objection/{{ fi.id }}/" class="record">오류 신청 내역 확인하기</a></td>
           <td>{{ fi.input_num }} 명</td>
           <td>{{ fi.people_num }} 명</td>
-          <td>{{ fi.people_num|mul:5 }} (만원)</td>
+          <td>{{ fi.input_num|mul:5 }} (만원)</td>
           <td>{{ fi.created_at|date:"Y.m.d" }} </td>
           <td>
             {% if fi.is_approval == False %}
@@ -140,7 +140,7 @@
       </tbody>
     </table>
     <div style="text-align:center">
-      <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 신청 확인하기</button>
+      <button class="btn btn-secondary" type="submit" onclick="location.href='/'">전체 승인 확인하기</button>
       <button class="btn btn-secondary" type="submit" onclick="location.href='/upload'">회식비 추가 신청하기</button>
     </div>
   </div>
