@@ -3,29 +3,25 @@
 {% block content %}
 {% load mathfilters %}
 
-<div class="container mt-5" style="width:60%;">
+<div class="container mt-5" style="width:60%">
     <div class="row">
-        <h2 class="fw-bolder mb-4 mt-5">오류 신고내역 </h2>
-        <!-- <h6>총 승인 내역 수 : {{ support.is_approval.count }}</h6> -->
+        <h2 class="fw-bolder mb-4 mt-5">팀 회식비 신청내역 </h2>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">팀이름</th>
                     <th scope="col">상세페이지</th>
-                    <th scope="col">사용자가 입력한 인원수</th>
-                    <th scope="col">확인된 인원수</th>
+                    <th scope="col">인원수</th>
                     <th scope="col">신청금액</th>
                     <th scope="col">신청날짜</th>
                     <th scope="col">승인여부</th>
                 </tr>
             </thead>
             <tbody>
-                {% for al in objection %}
+                {% for al in true_approval %}
                 <tr>
                     <th scope="row">{{ al.team_name.team_name }}팀</th>
-                    <td><a href="/my_objection/{{ al.id }}" style="color:black;">오류 신청 내역
-                            확인하기</a></td>
-                    <td>{{ al.input_num }} 명</td>
+                    <td><a href="/result/{{al.id}}/" style="color:black;">신청내역 확인하기</a></td>
                     <td>{{ al.people_num }} 명</td>
                     <td>{{ al.people_num|mul:5 }} 만원</td>
                     <td>{{ al.created_at|date:"Y.m.d" }}</td>
@@ -54,7 +50,7 @@
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">닫기</button>
                                         <button type="button" class="btn btn-primary">
-                                            <a href="/objection_list/{{ al.id }}" class="card-link"
+                                            <a href="/approval/{{ al.id }}" class="card-link"
                                                 style="text-decoration: none; color: inherit;">
                                                 승인
                                             </a>
@@ -84,5 +80,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

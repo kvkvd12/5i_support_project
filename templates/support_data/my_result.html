@@ -4,7 +4,7 @@
 {% load mathfilters %}
 
 <!-- Page content-->
-<div class="container mt-5" style="width:50%">            
+<div class="container mt-5" style="width:60%">            
     <div class="row" >
         <h2 class="fw-bolder mb-4 mt-5">{{ user.username }}님의 회식비 신청 내역</h2>
         
@@ -64,7 +64,13 @@
               <td>{{ fi.people_num }} 명</td>
               <td>{{ fi.people_num|mul:5 }} (만원)</td>
               <td>{{ fi.created_at|date:"Y.m.d" }} </td>
-              <td>확인중</td>
+              <td>
+                {% if fi.is_approval == False %}
+                <p style="color: red;">승인중</p>
+                {% else %}
+                <p style="color: blue;">승인완료</p>
+                {% endif %}
+              </td>
             </tr>
           {% endfor %}
           </tbody>
