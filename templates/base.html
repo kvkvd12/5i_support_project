@@ -29,15 +29,15 @@
                         
                     </ul>
                     <form class="d-flex">
-                        <a class="nav-link" href="">{{ user.username }}님 안녕하세요</a>
                         {% if user.username == 'a' %}
-                        <button class="btn btn-outline-dark" type="submit" >
-                            <a href="/approval" style="text-decoration: none; color: inherit;">승인</a>
+                        <button class="btn btn-outline-dark" type="submit" style="margin-right: 20px;">
+                            <a href="/approval_list" style="text-decoration: none; color: inherit;">승인</a>
                         </button>
-                        <button class="btn btn-outline-dark" type="submit" >
+                        <button class="btn btn-outline-dark" type="submit" style="margin-right: 20px;">
                             <a href="/objection_list" style="text-decoration: none; color: inherit;">이의제기</a>
                         </button>
                         {% else %}
+                        <a class="nav-link" href="">{{ user.username }}님 안녕하세요</a>
                         <button class="btn btn-outline-dark" type="submit" style="margin-right: 20px;">
                             <a href="/upload" style="text-decoration: none; color: inherit;">신청하기</a>
                         </button>

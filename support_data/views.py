@@ -74,7 +74,9 @@ def team_result(request):
 def approval_list(request):
     if request.method == 'GET':
         approval_list = Support.objects.all()
-        return render(request, 'support_data/approval.html', {'approval_list': approval_list})
+        # 일치하는 이미지만 보여주는 코드
+        true_approval = approval_list.filter(input_num=F("people_num"))
+        return render(request, 'support_data/approval_list.html', {'approval_list': approval_list, 'true_approval': true_approval})
 
 @login_required
 def approval(request, id):
@@ -82,25 +84,23 @@ def approval(request, id):
     click_approval = Support.objects.get(id=id)
     click_approval.is_approval=not click_approval.is_approval
     click_approval.save()
-    return redirect('/approval')
+    return redirect('/approval_list')
 
 @login_required    
 def objection_list(request):
     if request.method == 'GET':
         objection_list = Support.objects.all()
-        return render(request, 'support_data/objection_list.html', {'objection_list': objection_list})
-    
-def objection(request):
-    if request.method == 'GET':
-        return render (request, 'support_data/objection.html')
+        # 오류난 이미지만 보여주는 코드
+        objection = objection_list.exclude(input_num=F("people_num"))
+        return render(request, 'support_data/objection_list.html', {'objection_list': objection_list, 'objection': objection})
 
-    elif request.method == 'POST':
-        team_name = request.user
-        content = request.POST.get("content")
-        #image = request.FILES.get("image")
-        Support.objects.create(content=content, team_name=team_name)
-        return redirect('/')   
-
+@login_required    
+def objection(request, id):
+    me = request.user
+    click_objection = Support.objects.get(id=id)
+    click_objection.is_approval=not click_objection.is_approval
+    click_objection.save()
+    return redirect('/objection_list')  
 
 def delete_image(request,id):
     my_image = Support.objects.get(id=id)
