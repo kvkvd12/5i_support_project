@@ -123,7 +123,7 @@
                                                 <div class="modal-footer">
                                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                         <button type="button" class="btn btn-light me-md-2"><a href="/">
-                                                                <span class="material-symbols-outlined" style="color:black;"><a href="/delete/{{my_image.id}}">delete</a></span>
+                                                                <span class="material-symbols-outlined"><a href="/delete/{{my_image.id}}" style="text-decoration: none; color: inherit;">delete</a></span>
                                                             </a></button>
                                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">
                                                             <span class="material-symbols-outlined">close</span></button>
@@ -141,25 +141,20 @@
             {% endfor %}
         </div>
         <!-- Side widgets-->
-        <div class="col-lg-4" style="margin-top: 80px;">
-            <div class="card mb-4" style="margin-top: 20px;">
-                <div class="card-header">확인하기</div>
-                <div class="card-body">
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/my_result'">나의 신청내역
-                            확인하기</button>
-                    </div>
-                </div>
-            </div>
+        {% if user.username == 'a' %}
+        {% else %}
+        <div class="col-lg-4" style="margin-top: 100px;">
             <div class="card mb-4">
                 <div class="card-header">확인하기</div>
                 <div class="card-body">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-secondary" type="submit" onclick="location.href='/team_result'">우리팀의 신청내역 확인하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/my_result'">나의 신청내역 확인하기</button>
+                        <button class="btn btn-secondary" type="submit" onclick="location.href='/team_result'">우리팀 신청내역 확인하기</button>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 
