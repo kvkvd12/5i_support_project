@@ -17,6 +17,7 @@
           <th scope="col">신청금액</th>
           <th scope="col">신청날짜</th>
           <th scope="col">승인여부</th>
+          <th scope="col">삭제</th>
         </tr>
       </thead>
       <tbody>
@@ -34,7 +35,38 @@
             <p style="color: blue;">승인완료</p>
             {% endif %}
           </td>
+          <td>
+            {% if ti.team_name == user and ti.is_approval == False %}
+            <a href="" class="record" data-bs-toggle="modal" data-bs-target="#deleteModal{{ti.id}}">
+                <span class="material-symbols-outlined">신청 취소</span>
+            </a>
+            {% endif %}
+          </td>
         </tr>
+        <!-- 삭제하기 Modal -->
+        <div class="modal fade" id="deleteModal{{ti.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">신청 취소하기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                정말 신청을 취소하시겠습니까?
+              </div>
+              <div class="modal-footer">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button type="button" class="btn btn-light me-md-2"><a href="/">
+                      <span class="material-symbols-outlined"><a href="/delete/{{ti.id}}"
+                          style="text-decoration: none; color: inherit;">삭제</a></span>
+                    </a></button>
+                  <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                    <span class="material-symbols-outlined">닫기</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
       </tbody>
     </table>
@@ -53,6 +85,7 @@
           <th scope="col">신청금액</th>
           <th scope="col">신청날짜</th>
           <th scope="col">승인여부</th>
+          <th scope="col">삭제</th>
         </tr>
       </thead>
       <tbody>
@@ -71,7 +104,38 @@
             <p style="color: blue;">승인완료</p>
             {% endif %}
           </td>
+          <td>
+            {% if fi.team_name == user and fi.is_approval == False %}
+            <a href="" class="record" data-bs-toggle="modal" data-bs-target="#deleteModal{{fi.id}}">
+              <span class="material-symbols-outlined">신청 취소</span>
+            </a>
+            {% endif %}
+          </td>
         </tr>
+        <!-- 삭제하기 Modal -->
+        <div class="modal fade" id="deleteModal{{fi.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">신청 취소하기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                정말 신청을 취소하시겠습니까?
+              </div>
+              <div class="modal-footer">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button type="button" class="btn btn-light me-md-2"><a href="/">
+                      <span class="material-symbols-outlined"><a href="/delete/{{fi.id}}"
+                          style="text-decoration: none; color: inherit;">삭제</a></span>
+                    </a></button>
+                  <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                    <span class="material-symbols-outlined">닫기</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
       </tbody>
     </table>
