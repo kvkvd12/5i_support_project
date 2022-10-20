@@ -33,14 +33,11 @@
                                 Upload
                             </button>
                         </div>
-                            {% if error %}
-                                
-                                <div style="color:red;" role="alert">{{ error }}</div>
-                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                                    이의제기하기
-                                </button>
-                            
-                            {% endif %}
+                        {% if error %}
+                        <p style="color:red; margin:3% auto 0px auto">
+                            {{ error }}
+                        </p>
+                        {% endif %}
                         
                     </div>
                 </div>
