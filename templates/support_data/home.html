@@ -55,6 +55,7 @@
         <div class="col-lg-8">
             <!-- Product section-->
             {% for my_image in my_images %}
+            {% if my_image.is_approval == True %}
             <section class="py-5">
                 <div class="container px-4 px-lg-5 my-5">
                     <div class="row gx-4 gx-lg-5 align-items-center">
@@ -138,10 +139,11 @@
                     </div>
                 </div>
             </section>
+            {% endif %}
             {% endfor %}
         </div>
         <!-- Side widgets-->
-        {% if user.username == 'a' %}
+        {% if user.username == 'admin' %}
         {% else %}
         <div class="col-lg-4" style="margin-top: 100px;">
             <div class="card mb-4">
